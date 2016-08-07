@@ -3,36 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp">
+    android:padding="10dp"
+    android:layout_marginBottom="25dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    android:background="@drawable/tweet_container">
+
+
+    <ImageView
+        android:id="@+id/ivProfileImage"
+        android:scaleType="centerCrop"
+        android:layout_marginRight="10dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        tools:src="@android:mipmap/sym_def_app_icon"/>
+
 
     <TextView
         android:id="@+id/tvScreenName"
         tools:text="Screen Name"
+        android:textSize="20dp"
+        android:textColor="@color/colorText"
+        android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ivProfileImage" />
+
 
     <TextView
         android:id="@+id/tvText"
         tools:text="Tweet message body"
+        android:textSize="13dp"
+        android:textColor="@color/colorText"
+        android:typeface="monospace"
+        android:layout_marginTop="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tvScreenName"/>
-
-    <TextView
-        android:id="@+id/tvName"
-        tools:text="Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvText"/>
+        android:layout_below="@+id/tvScreenName"
+        android:layout_toRightOf="@id/ivProfileImage"/>
 
     <TextView
         android:id="@+id/tvCreatedAt"
         tools:text="Monday October 7th"
+        android:textColor="@color/colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvText"
-        android:layout_toRightOf="@id/tvName"/>
-
+        android:layout_below="@id/tvText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

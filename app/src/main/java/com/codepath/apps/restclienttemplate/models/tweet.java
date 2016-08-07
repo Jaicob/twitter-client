@@ -1,10 +1,16 @@
 package com.codepath.apps.restclienttemplate.models;
 
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.TimeZone;
+import android.net.ParseException;
+import android.text.format.DateUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by Jaicob on 8/4/16.
@@ -23,7 +29,6 @@ public class Tweet {
         this.createdAt = createdAt;
     }
 
-
     public Tweet(JSONObject jsonObject){
         try {
             this.id = jsonObject.getString("id_str");
@@ -34,6 +39,7 @@ public class Tweet {
             e.printStackTrace();
         }
     }
+
 
     public static ArrayList<Tweet> jsonArrayToTweets(JSONArray array){
         ArrayList<Tweet> results = new ArrayList<>();
@@ -63,7 +69,7 @@ public class Tweet {
     }
 
     public String getCreatedAt() {
-        return createdAt;
+        return getRelativeTimeAgo(createdAt);
     }
 
     public void setCreatedAt(String createdAt) {
@@ -78,5 +84,28 @@ public class Tweet {
         this.user = user;
     }
 
+    private String getRelativeTimeAgo(String rawJsonDate) {
+        String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
+        SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
+        sf.setLenient(true);
+        sf.setTimeZone(TimeZone.getDefault());
+        String relativeDate = "";
+
+        try {
+            long dateMillis = sf.parse(rawJsonDate).getTime();
+            relativeDate = DateUtils.getRelativeTimeSpanString(dateMillis,
+                    System.currentTimeMillis(),
+                    DateUtils.SECOND_IN_MILLIS).toString();
+
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+
+        return relativeDate;
+    }
 
 }

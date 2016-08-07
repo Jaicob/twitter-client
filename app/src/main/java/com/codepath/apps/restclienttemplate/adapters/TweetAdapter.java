@@ -1,15 +1,19 @@
 package com.codepath.apps.restclienttemplate.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.apps.restclienttemplate.models.User;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -26,7 +30,6 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         mTweets = tweets;
     }
     //endregion
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,8 +49,11 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
 
         holder.tvText.setText(tweet.getText());
         holder.tvCreatedAt.setText(tweet.getCreatedAt());
-        holder.tvName.setText(user.getName());
         holder.tvScreenName.setText(user.getScreenName());
+
+        Picasso.with(mContext).load(user.getProfileImageUrl()).into(holder.ivProfileImage);
+        holder.ivProfileImage.setColorFilter(Color.parseColor("#8033bbbb"), PorterDuff.Mode.SCREEN);
+        holder.ivProfileImage.setAlpha(0.9f);
     }
 
     @Override
@@ -58,19 +64,17 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     //region ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView tvText;
-        public TextView tvName;
-        public TextView tvScreenName;
         public TextView tvCreatedAt;
+        public TextView tvScreenName;
+        public ImageView ivProfileImage;
 
         public ViewHolder(View itemView){
             super(itemView);
             tvText = (TextView) itemView.findViewById(R.id.tvText);
-            tvName = (TextView) itemView.findViewById(R.id.tvName);
-            tvScreenName = (TextView) itemView.findViewById(R.id.tvScreenName);
             tvCreatedAt = (TextView) itemView.findViewById(R.id.tvCreatedAt);
+            tvScreenName = (TextView) itemView.findViewById(R.id.tvScreenName);
+            ivProfileImage = (ImageView) itemView.findViewById(R.id.ivProfileImage);
         }
     }
     //endregion
-
-
 }

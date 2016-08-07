@@ -1,5 +1,7 @@
 package com.codepath.apps.restclienttemplate.activities;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
@@ -8,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.ComposeTweetDialogFragment;
@@ -32,6 +35,7 @@ public class StreamActivity extends AppCompatActivity implements ComposeTweetDia
     private TweetAdapter adapter;
     private ArrayList<Tweet> mTweets;
     private RecyclerView rvTweets;
+    private ImageView ivImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,9 @@ public class StreamActivity extends AppCompatActivity implements ComposeTweetDia
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        ivImage = (ImageView) findViewById(R.id.ivBackground);
+        ivImage.setColorFilter(Color.parseColor("#112222"), PorterDuff.Mode.SCREEN);
+        ivImage.setAlpha(0.75f);
 
         client = TwitterClientApplication.getRestClient();
         rvTweets = (RecyclerView) findViewById(R.id.rvTweets);

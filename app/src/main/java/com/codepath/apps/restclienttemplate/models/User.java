@@ -7,28 +7,29 @@ import org.json.JSONObject;
  * Created by Jaicob on 8/4/16.
  */
 public class User {
-    private String name;
-    private String screenName;
     private long uid;
+    private String screenName;
 
-    public User(String name, String screenName, long uid){
-        this.name = name;
-        this.screenName = screenName;
+    private String profileImageUrl;
+
+    public User(String screenName, long uid, String profileImageUrl){
         this.uid = uid;
+        this.screenName = screenName;
+        this.profileImageUrl = profileImageUrl;
     }
 
     public User(JSONObject jsonObject) {
         try {
-            this.name = jsonObject.getString("name");
-            this.screenName = jsonObject.getString("screen_name");
             this.uid = jsonObject.getLong("id");
+            this.screenName = jsonObject.getString("screen_name");
+            this.profileImageUrl = jsonObject.getString("profile_image_url_https");
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public String getName() {
-        return name;
+    public String getProfileImageUrl() {
+        return profileImageUrl;
     }
 
     public String getScreenName() {

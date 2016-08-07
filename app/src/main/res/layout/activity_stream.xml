@@ -7,16 +7,26 @@
     android:fitsSystemWindows="true"
     tools:context=".activities.StreamActivity">
 
+    <ImageView
+        android:id="@+id/ivBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="@drawable/toolbar_background">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:theme="@style/ToolbarTheme"
+            android:titleTextAppearance="@style/Toolbar.TitleText"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
@@ -27,7 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
+        android:src="@android:drawable/ic_input_add"
+        android:background="@color/colorDarkest"
+        android:tint="@android:color/white"/>
 
     <include layout="@layout/content_stream" />
 </android.support.design.widget.CoordinatorLayout>
