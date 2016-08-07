@@ -9,6 +9,8 @@ import com.loopj.android.http.RequestParams;
 import org.scribe.builder.api.Api;
 import org.scribe.builder.api.TwitterApi;
 
+import java.security.InvalidParameterException;
+
 /*
  * 
  * This is the object responsible for communicating with a REST API. 
@@ -27,6 +29,7 @@ public class TwitterClient extends OAuthBaseClient {
 	public static final String REST_CONSUMER_SECRET = "ZVmeIiOmhLkyBqqJtFDHKJ1m9Zvb0qHiDRuzUII3FrsUKzTkYD"; // Change this
 	public static final String REST_URL = "https://api.twitter.com/1.1"; // Change this, base API URL
 	public static final String REST_CALLBACK_URL = "oauth://jaicob"; // Change this (here and in manifest)
+    public static final int MAX_TWEET_LENGTH = 140;
 
 	public TwitterClient(Context context) {
 		super(context, REST_API_CLASS, REST_URL, REST_CONSUMER_KEY, REST_CONSUMER_SECRET, REST_CALLBACK_URL);
@@ -51,12 +54,30 @@ public class TwitterClient extends OAuthBaseClient {
 	 *    i.e client.post(apiUrl, params, handler);
 	 */
 
-	public void getHomeTimeline(AsyncHttpResponseHandler handler){
+	public void getHomeTimeline(String max_id, AsyncHttpResponseHandler handler){
 		String url = getApiUrl("/statuses/home_timeline.json");
 		RequestParams params = new RequestParams();
 
 		params.put("count",25);
-		params.put("since_id",1);
+		params.put("max_id",max_id);
 		getClient().get(url,params,handler);
 	}
+
+	public void getHomeTimeline( AsyncHttpResponseHandler handler){
+        String url = getApiUrl("/statuses/home_timeline.json");
+        RequestParams params = new RequestParams();
+        params.put("count",25);
+        getClient().get(url,params,handler);
+	}
+
+    public void postTweet(String status, AsyncHttpResponseHandler handler) {
+        if (status.length() > MAX_TWEET_LENGTH) {
+            throw new InvalidParameterException();
+        }
+
+        String url = getApiUrl("/statuses/update.json");
+        RequestParams params = new RequestParams();
+        params.put("status", status);
+        getClient().post(url,params,handler);
+    }
 }

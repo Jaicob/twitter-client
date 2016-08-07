@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.User;
 
 import java.util.List;
 
@@ -41,8 +42,12 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Tweet tweet = mTweets.get(position);
+        User user = tweet.getUser();
 
         holder.tvText.setText(tweet.getText());
+        holder.tvCreatedAt.setText(tweet.getCreatedAt());
+        holder.tvName.setText(user.getName());
+        holder.tvScreenName.setText(user.getScreenName());
     }
 
     @Override
@@ -53,10 +58,16 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     //region ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView tvText;
+        public TextView tvName;
+        public TextView tvScreenName;
+        public TextView tvCreatedAt;
 
         public ViewHolder(View itemView){
             super(itemView);
             tvText = (TextView) itemView.findViewById(R.id.tvText);
+            tvName = (TextView) itemView.findViewById(R.id.tvName);
+            tvScreenName = (TextView) itemView.findViewById(R.id.tvScreenName);
+            tvCreatedAt = (TextView) itemView.findViewById(R.id.tvCreatedAt);
         }
     }
     //endregion

@@ -10,15 +10,26 @@ import java.util.ArrayList;
  * Created by Jaicob on 8/4/16.
  */
 public class Tweet {
+    String id;
     String text;
+    String createdAt;
 
-    public Tweet(String text){
+    User user;
+
+    public Tweet(String id, String text, User user, String createdAt){
+        this.id = id;
         this.text = text;
+        this.user = user;
+        this.createdAt = createdAt;
     }
 
-    public Tweet(JSONObject jsonObject) throws JSONException{
+
+    public Tweet(JSONObject jsonObject){
         try {
+            this.id = jsonObject.getString("id_str");
             this.text = jsonObject.getString("text");
+            this.user = new User(jsonObject.getJSONObject("user"));
+            this.createdAt = jsonObject.getString("created_at");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -39,12 +50,32 @@ public class Tweet {
         return results;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getText() {
         return text;
     }
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 
