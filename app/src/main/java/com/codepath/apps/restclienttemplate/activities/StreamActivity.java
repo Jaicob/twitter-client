@@ -101,6 +101,7 @@ public class StreamActivity extends AppCompatActivity implements ComposeTweetDia
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);
+                mTweets.clear();
                 mTweets.addAll(Tweet.jsonArrayToTweets(response));
                 adapter.notifyDataSetChanged();
             }

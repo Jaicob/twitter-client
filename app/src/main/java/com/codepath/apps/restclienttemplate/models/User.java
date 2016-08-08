@@ -10,14 +10,16 @@ import org.json.JSONObject;
  */
 public class User extends SugarRecord {
     private Long id;
+
+    private String location;
+
     private String screenName;
-
     private String profileImageUrl;
-
     public User(){}
 
-    public User(String screenName, long uid, String profileImageUrl){
+    public User(String screenName, long uid, String profileImageUrl, String location){
         this.id = uid;
+        this.location = location;
         this.screenName = screenName;
         this.profileImageUrl = profileImageUrl;
     }
@@ -25,6 +27,7 @@ public class User extends SugarRecord {
     public User(JSONObject jsonObject) {
         try {
             this.id = jsonObject.getLong("id");
+            this.location = jsonObject.getString("location");
             this.screenName = jsonObject.getString("screen_name");
             this.profileImageUrl = jsonObject.getString("profile_image_url_https");
         } catch (JSONException e) {
@@ -34,6 +37,10 @@ public class User extends SugarRecord {
 
     public String getProfileImageUrl() {
         return profileImageUrl;
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     public String getScreenName() {

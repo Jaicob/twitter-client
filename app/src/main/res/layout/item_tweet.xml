@@ -41,17 +41,29 @@
         android:layout_marginTop="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="85dp"
         android:layout_below="@+id/tvScreenName"
         android:layout_toRightOf="@id/ivProfileImage"/>
 
     <TextView
         android:id="@+id/tvCreatedAt"
         tools:text="Monday October 7th"
+        android:textSize="12dp"
         android:textColor="@color/colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvText"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:textSize="12dp"
+        android:textColor="@color/colorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

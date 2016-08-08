@@ -48,6 +48,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         User user = tweet.getUser();
 
         holder.tvText.setText(tweet.getText());
+        holder.tvLocation.setText("Location: " + user.getLocation());
         holder.tvCreatedAt.setText(tweet.getCreatedAt());
         holder.tvScreenName.setText(user.getScreenName());
 
@@ -64,6 +65,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     //region ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView tvText;
+        public TextView tvLocation;
         public TextView tvCreatedAt;
         public TextView tvScreenName;
         public ImageView ivProfileImage;
@@ -71,6 +73,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         public ViewHolder(View itemView){
             super(itemView);
             tvText = (TextView) itemView.findViewById(R.id.tvText);
+            tvLocation = (TextView) itemView.findViewById(R.id.tvLocation);
             tvCreatedAt = (TextView) itemView.findViewById(R.id.tvCreatedAt);
             tvScreenName = (TextView) itemView.findViewById(R.id.tvScreenName);
             ivProfileImage = (ImageView) itemView.findViewById(R.id.ivProfileImage);

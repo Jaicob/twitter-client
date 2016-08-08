@@ -34,7 +34,8 @@
                 android:typeface="monospace"
                 android:text="Recent Transmissions"
                 android:textSize="21dp"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:gravity="center" />
 
         </android.support.v7.widget.Toolbar>
 

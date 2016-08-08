@@ -22,12 +22,11 @@ public class Tweet extends SugarRecord {
     String tweetId;
     String text;
     String createdAt;
-    int retweetCount;
 
 
     public Tweet(){ }
 
-    public Tweet(String id, String text, User user, String createdAt){
+    public Tweet(String id, String text, User user, String createdAt, String location){
         this.tweetId = id;
         this.text = text;
         this.user = user;
