@@ -3,6 +3,7 @@ package com.codepath.apps.restclienttemplate;
 import android.content.Context;
 
 import com.codepath.apps.restclienttemplate.network.TwitterClient;
+import com.orm.SugarContext;
 
 /*
  * This is the Android application itself and is used to configure various settings
@@ -19,6 +20,7 @@ public class TwitterClientApplication extends com.activeandroid.app.Application 
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		SugarContext.init(this);
 		TwitterClientApplication.context = this;
 	}
 

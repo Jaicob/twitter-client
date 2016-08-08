@@ -5,6 +5,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,6 +37,7 @@ public class StreamActivity extends AppCompatActivity implements ComposeTweetDia
     private ArrayList<Tweet> mTweets;
     private RecyclerView rvTweets;
     private ImageView ivImage;
+    private SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +62,28 @@ public class StreamActivity extends AppCompatActivity implements ComposeTweetDia
         rvTweets.addOnScrollListener(new EndlessRecyclerViewScrollListener(linearLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
-                String max_id = mTweets.get(mTweets.size()-1).getId();
+                String max_id = mTweets.get(mTweets.size()-1).getTweetId().toString();
                 populateTimelinePaginated(max_id);
             }
         });
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                populateTimeline();
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +95,7 @@ public class StreamActivity extends AppCompatActivity implements ComposeTweetDia
     }
 
     public void populateTimelinePaginated(String max_id){
-        client.getHomeTimeline(max_id,new JsonHttpResponseHandler(){
+        client.getHomeTimeline(max_id, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);
@@ -86,24 +106,38 @@ public class StreamActivity extends AppCompatActivity implements ComposeTweetDia
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+//                mTweets.addAll(Tweet.listAll(Tweet.class));
+//                adapter.notifyDataSetChanged();
             }
         });
     }
 
     public void populateTimeline(){
-        client.getHomeTimeline(new JsonHttpResponseHandler(){
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                super.onSuccess(statusCode, headers, response);
-                mTweets.addAll(Tweet.jsonArrayToTweets(response));
-                adapter.notifyDataSetChanged();
-            }
+         client.getHomeTimeline(new JsonHttpResponseHandler() {
+             @Override
+             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                 super.onSuccess(statusCode, headers, response);
+                 // TODO: make this use since ID instead of reloading all tweets
+                 mTweets.clear();
+                 mTweets.addAll(Tweet.jsonArrayToTweets(response));
+                 adapter.notifyDataSetChanged();
+                 swipeContainer.setRefreshing(false);
+             }
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                super.onFailure(statusCode, headers, throwable, errorResponse);
-            }
-        });
+             @Override
+             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                 super.onFailure(statusCode, headers, throwable, errorResponse);
+//                 mTweets.addAll((ArrayList<Tweet>) Tweet.listAll(Tweet.class));
+//                 adapter.notifyDataSetChanged();
+             }
+
+             @Override
+             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                 super.onFailure(statusCode, headers, responseString, throwable);
+//                 mTweets.addAll(Tweet.listAll(Tweet.class));
+//                 adapter.notifyDataSetChanged();
+             }
+         });
     }
 
     private void showEditDialog() {

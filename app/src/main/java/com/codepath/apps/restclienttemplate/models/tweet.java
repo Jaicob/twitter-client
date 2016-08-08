@@ -5,6 +5,8 @@ import android.icu.util.TimeZone;
 import android.net.ParseException;
 import android.text.format.DateUtils;
 
+import com.orm.SugarRecord;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,15 +17,16 @@ import java.util.Locale;
 /**
  * Created by Jaicob on 8/4/16.
  */
-public class Tweet {
-    String id;
+public class Tweet extends SugarRecord {
+    User user;
+    String tweetId;
     String text;
     String createdAt;
 
-    User user;
+    public Tweet(){ }
 
     public Tweet(String id, String text, User user, String createdAt){
-        this.id = id;
+        this.tweetId = id;
         this.text = text;
         this.user = user;
         this.createdAt = createdAt;
@@ -31,7 +34,7 @@ public class Tweet {
 
     public Tweet(JSONObject jsonObject){
         try {
-            this.id = jsonObject.getString("id_str");
+            this.tweetId = jsonObject.getString("id_str");
             this.text = jsonObject.getString("text");
             this.user = new User(jsonObject.getJSONObject("user"));
             this.createdAt = jsonObject.getString("created_at");
@@ -39,7 +42,6 @@ public class Tweet {
             e.printStackTrace();
         }
     }
-
 
     public static ArrayList<Tweet> jsonArrayToTweets(JSONArray array){
         ArrayList<Tweet> results = new ArrayList<>();
@@ -56,8 +58,8 @@ public class Tweet {
         return results;
     }
 
-    public String getId() {
-        return id;
+    public String getTweetId() {
+        return tweetId;
     }
 
     public String getText() {
