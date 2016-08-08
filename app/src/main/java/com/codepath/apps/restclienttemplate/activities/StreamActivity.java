@@ -45,6 +45,7 @@ public class StreamActivity extends AppCompatActivity implements ComposeTweetDia
         setContentView(R.layout.activity_stream);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("");
 
         ivImage = (ImageView) findViewById(R.id.ivBackground);
         ivImage.setColorFilter(Color.parseColor("#112222"), PorterDuff.Mode.SCREEN);
@@ -79,10 +80,11 @@ public class StreamActivity extends AppCompatActivity implements ComposeTweetDia
             }
         });
         // Configure the refreshing colors
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
+        swipeContainer.setColorSchemeResources(R.color.colorLightest,
+                R.color.colorLight,
+                R.color.colorMedium,
+                R.color.colorDark);
+        swipeContainer.setProgressBackgroundColorSchemeColor(Color.parseColor("#003333"));
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

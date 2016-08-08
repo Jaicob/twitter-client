@@ -7,6 +7,7 @@
 
 
     <color name="colorDarkest">#003333</color>
+    <color name="colorDarkestTransparent">#95003333</color>
     <color name="colorDark">#50007777</color>
     <color name="colorMedium">#115566</color>
     <color name="colorLight">#5533bbbb</color>

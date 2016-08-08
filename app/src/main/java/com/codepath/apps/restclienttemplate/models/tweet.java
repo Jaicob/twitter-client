@@ -22,6 +22,8 @@ public class Tweet extends SugarRecord {
     String tweetId;
     String text;
     String createdAt;
+    int retweetCount;
+
 
     public Tweet(){ }
 
@@ -98,9 +100,6 @@ public class Tweet extends SugarRecord {
             relativeDate = DateUtils.getRelativeTimeSpanString(dateMillis,
                     System.currentTimeMillis(),
                     DateUtils.SECOND_IN_MILLIS).toString();
-
-
-
         } catch (ParseException e) {
             e.printStackTrace();
         } catch (java.text.ParseException e) {
