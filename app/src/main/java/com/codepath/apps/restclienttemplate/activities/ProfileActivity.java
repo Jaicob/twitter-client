@@ -1,8 +1,11 @@
 package com.codepath.apps.restclienttemplate.activities;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
 
 import com.codepath.apps.restclienttemplate.R;
 
@@ -15,6 +18,10 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("");
+
+        ImageView ivImage = (ImageView) findViewById(R.id.ivBackgroundp);
+        ivImage.setColorFilter(Color.parseColor("#112222"), PorterDuff.Mode.SCREEN);
+        ivImage.setAlpha(0.75f);
     }
 
 }

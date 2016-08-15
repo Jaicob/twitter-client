@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/view_profile"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -22,14 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ivProfileImagep"/>
 
-    <TextView
-        android:id="@+id/tvLocationp"
-        tools:text="Screen Name"
-        android:textSize="20sp"
-        android:textColor="@color/colorText"
-        android:layout_marginRight="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tvDescriptionp"
@@ -38,7 +31,19 @@
         android:textColor="@color/colorText"
         android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvScreenNamep"
+        />
+
+    <TextView
+        android:id="@+id/tvLocationp"
+        tools:text="Screen Name"
+        android:textSize="20sp"
+        android:textColor="@color/colorText"
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDescriptionp" />
 
     <TextView
         android:id="@+id/tvFollowersp"
@@ -47,7 +52,9 @@
         android:textColor="@color/colorText"
         android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tvLocationp"
+        android:layout_marginLeft="4dp"/>
 
     <TextView
         android:id="@+id/tvFollowingp"
@@ -56,7 +63,8 @@
         android:textColor="@color/colorText"
         android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tvFollowersp" />
 
     <TextView
         android:id="@+id/tvNumTweetsp"
@@ -65,7 +73,8 @@
         android:textColor="@color/colorText"
         android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvFollowersp"/>
 
 
 </RelativeLayout>

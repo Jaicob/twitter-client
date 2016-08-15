@@ -61,7 +61,7 @@ public class UserTimelineFragment extends TweetsListFragment{
     }
 
     @Override
-    public void populateTimelinePaginated(user_id, String max_id){
+    public void populateTimelinePaginated(String max_id){
         client.getUserTimeline(user_id, max_id, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {

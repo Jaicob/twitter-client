@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activities.StreamActivity">
+    tools:context=".activities.ProfileActivity">
 
     <ImageView
         android:id="@+id/ivBackgroundp"
@@ -43,5 +43,5 @@
 
 
 
-    <include layout="@layout/content_stream" />
+    <include layout="@layout/content_profile" />
 </android.support.design.widget.CoordinatorLayout>
