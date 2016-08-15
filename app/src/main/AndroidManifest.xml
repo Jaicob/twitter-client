@@ -25,10 +25,18 @@
         <meta-data
             android:name="AA_DB_VERSION"
             android:value="1" />
-        <meta-data android:name="DATABASE" android:value="sugar_example.db" />
-        <meta-data android:name="VERSION" android:value="3" />
-        <meta-data android:name="QUERY_LOG" android:value="true"/>
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.codepath.apps.restclienttemplate.models" />
+        <meta-data
+            android:name="DATABASE"
+            android:value="sugar_example.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="3" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.codepath.apps.restclienttemplate.models" />
 
         <activity
             android:name=".activities.LoginActivity"
@@ -53,6 +61,10 @@
         <activity
             android:name=".activities.StreamActivity"
             android:label="@string/title_activity_stream"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

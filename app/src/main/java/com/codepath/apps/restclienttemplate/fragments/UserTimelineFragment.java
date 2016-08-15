@@ -24,12 +24,14 @@ import cz.msebera.android.httpclient.Header;
 /**
  * Created by Jaicob on 8/14/16.
  */
-public class MentionsTimelineFragment extends TweetsListFragment {
+public class UserTimelineFragment extends TweetsListFragment{
     private TwitterClient client;
+    private String user_id;
     private SwipeRefreshLayout swipeContainer;
 
-    public static TweetsListFragment newInstance() {
-        MentionsTimelineFragment fragment = new MentionsTimelineFragment();
+    public static TweetsListFragment newInstance(String user_id) {
+        UserTimelineFragment fragment = new UserTimelineFragment();
+        fragment.setUser_id(user_id);
         return fragment;
     }
 
@@ -50,9 +52,17 @@ public class MentionsTimelineFragment extends TweetsListFragment {
         return v;
     }
 
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
     @Override
-    public void populateTimelinePaginated(String max_id){
-        client.getMentionsTimeline(max_id, new JsonHttpResponseHandler(){
+    public void populateTimelinePaginated(user_id, String max_id){
+        client.getUserTimeline(user_id, max_id, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);
@@ -68,7 +78,7 @@ public class MentionsTimelineFragment extends TweetsListFragment {
 
     @Override
     public void populateTimeline(){
-        client.getMentionsTimeline(new JsonHttpResponseHandler() {
+        client.getUserTimeline(user_id, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);
@@ -84,4 +94,7 @@ public class MentionsTimelineFragment extends TweetsListFragment {
             }
         });
     }
+
 }
+
+

@@ -23,13 +23,13 @@ import java.util.List;
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
     private List<Tweet> mTweets;
     private Context mContext;
-
+    private static OnItemClickListener listener;
     //region Constructor
     public TweetAdapter(Context context, List<Tweet> tweets) {
         mContext = context;
         mTweets = tweets;
     }
-    //endregion
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -56,6 +56,14 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         holder.ivProfileImage.setColorFilter(Color.parseColor("#8033bbbb"), PorterDuff.Mode.SCREEN);
         holder.ivProfileImage.setAlpha(0.9f);
     }
+    //endregion
+
+    public interface OnItemClickListener {
+        void onItemClick(View itemView, int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     public int getItemCount() {
@@ -70,13 +78,21 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>{
         public TextView tvScreenName;
         public ImageView ivProfileImage;
 
-        public ViewHolder(View itemView){
+        public ViewHolder(final View itemView){
             super(itemView);
             tvText = (TextView) itemView.findViewById(R.id.tvText);
             tvLocation = (TextView) itemView.findViewById(R.id.tvLocation);
             tvCreatedAt = (TextView) itemView.findViewById(R.id.tvCreatedAt);
             tvScreenName = (TextView) itemView.findViewById(R.id.tvScreenName);
             ivProfileImage = (ImageView) itemView.findViewById(R.id.ivProfileImage);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Triggers click upwards to the adapter on click
+                    if (listener != null)
+                        listener.onItemClick(itemView, getLayoutPosition());
+                }
+            });
         }
     }
     //endregion

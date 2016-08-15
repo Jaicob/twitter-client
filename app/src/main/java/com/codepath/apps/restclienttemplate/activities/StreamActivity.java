@@ -29,7 +29,6 @@ public class StreamActivity extends AppCompatActivity implements ComposeTweetDia
 
     private TwitterClient client;
     private ImageView ivImage;
-//    private SwipeRefreshLayout swipeContainer;
     private TweetsListFragment tweetsListFragment;
 
     @Override

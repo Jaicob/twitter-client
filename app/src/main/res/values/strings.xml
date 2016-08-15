@@ -7,5 +7,6 @@
     <string name="compose_tweet_header">Submit New Report</string>
     <string name="btn_submit">SUBMIT</string>
     <string name="btn_cancel">CANCEL</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 
 </resources>

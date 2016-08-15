@@ -10,6 +10,7 @@ import com.orm.SugarRecord;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -17,6 +18,7 @@ import java.util.Locale;
 /**
  * Created by Jaicob on 8/4/16.
  */
+@Parcel
 public class Tweet extends SugarRecord {
     User user;
     String tweetId;

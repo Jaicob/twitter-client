@@ -31,6 +31,7 @@ public class TimelineFragmentPageAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
+
         switch (position) {
             case 0:
                 return HomeTimelineFragment.newInstance();
