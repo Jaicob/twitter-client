@@ -29,7 +29,7 @@ public class UserTimelineFragment extends TweetsListFragment{
     private String user_id;
     private SwipeRefreshLayout swipeContainer;
 
-    public static TweetsListFragment newInstance(String user_id) {
+    public static UserTimelineFragment newInstance(String user_id) {
         UserTimelineFragment fragment = new UserTimelineFragment();
         fragment.setUser_id(user_id);
         return fragment;

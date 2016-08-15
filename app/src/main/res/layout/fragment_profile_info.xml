@@ -26,7 +26,7 @@
 
     <TextView
         android:id="@+id/tvDescriptionp"
-        tools:text="Screen Name"
+        tools:text="Description"
         android:textSize="20sp"
         android:textColor="@color/colorText"
         android:layout_marginRight="10dp"
@@ -37,7 +37,7 @@
 
     <TextView
         android:id="@+id/tvLocationp"
-        tools:text="Screen Name"
+        tools:text="Location"
         android:textSize="20sp"
         android:textColor="@color/colorText"
         android:layout_marginRight="10dp"
@@ -47,34 +47,30 @@
 
     <TextView
         android:id="@+id/tvFollowersp"
-        tools:text="Screen Name"
-        android:textSize="20sp"
+        tools:text="Followers"
+        android:textSize="15sp"
         android:textColor="@color/colorText"
-        android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tvLocationp"
-        android:layout_marginLeft="4dp"/>
+        android:layout_marginLeft="4dp"
+        android:layout_alignParentRight="true"/>
 
     <TextView
         android:id="@+id/tvFollowingp"
-        tools:text="Screen Name"
-        android:textSize="20sp"
+        tools:text="Following"
+        android:textSize="15sp"
         android:textColor="@color/colorText"
-        android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/tvFollowersp" />
+        android:layout_below="@id/tvFollowersp"
+        android:layout_alignParentRight="true"/>
 
     <TextView
         android:id="@+id/tvNumTweetsp"
-        tools:text="Screen Name"
+        tools:text="Num Tweets"
         android:textSize="20sp"
         android:textColor="@color/colorText"
-        android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvFollowersp"/>
-
-
+        android:layout_below="@id/tvLocationp"/>
 </RelativeLayout>
