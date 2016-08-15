@@ -1,4 +1,4 @@
-package com.codepath.apps.restclienttemplate;
+package com.codepath.apps.restclienttemplate.fragments;
 
 import android.app.Dialog;
 import android.graphics.Point;
@@ -15,6 +15,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.codepath.apps.restclienttemplate.R;
 
 /**
  * Created by Jaicob on 8/6/16.
@@ -43,7 +45,7 @@ public class ComposeTweetDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Dialog dialog = new Dialog(getActivity(),R.style.Theme_Transparent);
+        Dialog dialog = new Dialog(getActivity(), R.style.Theme_Transparent);
         return dialog;
     }
 
