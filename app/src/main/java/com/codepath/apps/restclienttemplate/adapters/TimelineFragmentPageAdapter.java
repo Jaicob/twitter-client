@@ -16,7 +16,7 @@ import com.codepath.apps.restclienttemplate.fragments.MentionsTimelineFragment;
  */
 public class TimelineFragmentPageAdapter extends FragmentPagerAdapter{
     final int PAGE_COUNT = 2;
-    private String tabTitles[] = new String[] { "Home", "Mentions", "Tab3" };
+    private String tabTitles[] = new String[] { "Home", "Mentions"};
     private Context context;
 
     public TimelineFragmentPageAdapter(FragmentManager fm, Context context) {

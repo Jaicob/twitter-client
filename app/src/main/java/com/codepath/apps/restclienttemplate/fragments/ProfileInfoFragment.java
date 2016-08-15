@@ -1,6 +1,5 @@
 package com.codepath.apps.restclienttemplate.fragments;
 
-import android.app.Fragment;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -21,7 +20,7 @@ import org.parceler.Parcels;
 /**
  * Created by Jaicob on 8/14/16.
  */
-public class ProfileInfoFragment extends Fragment {
+public class ProfileInfoFragment extends android.support.v4.app.Fragment {
     private User user;
     private ImageView ivImage;
     private TextView tvScreenName;
@@ -30,6 +29,11 @@ public class ProfileInfoFragment extends Fragment {
     private TextView tvLocation;
     private TextView tvDescription;
     private TextView tvNumTweets;
+
+    public static ProfileInfoFragment newInstance() {
+        ProfileInfoFragment fragment = new ProfileInfoFragment();
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
